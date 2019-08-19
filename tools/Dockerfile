@@ -2,6 +2,7 @@ FROM nvidia/cuda:9.0-devel
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
+      libcudnn7 \
       python3-appdirs \
       python3-mako \
       python3-pytest \
