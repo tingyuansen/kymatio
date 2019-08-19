@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.2-devel
+FROM nvidia/cuda:9.0-devel
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
