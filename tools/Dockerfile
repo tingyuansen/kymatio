@@ -21,4 +21,4 @@ RUN pip3 install \
       torchvision \
       scikit-cuda \
       cupy \
-      tensorflow
+      tensorflow-gpu
