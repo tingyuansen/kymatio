@@ -16,7 +16,7 @@ RUN apt-get update && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/*
 
 RUN pip3 install \
-      numpy \
+      'numpy>=1.16' \
       scipy \
       configparser \
       torchvision \
