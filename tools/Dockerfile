@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-devel
+FROM nvidia/cuda:10.0-devel
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -7,7 +7,6 @@ RUN apt-get update && \
       python3-mako \
       python3-pytest \
       python3-pytest-cov \
-      python3-pytools \
       python3-pip \
       python3-venv \
       curl \
@@ -23,4 +22,4 @@ RUN pip3 install \
       torchvision \
       scikit-cuda \
       cupy \
-      'tensorflow-gpu==1.12'
+      'tensorflow-gpu==1.14.*'
