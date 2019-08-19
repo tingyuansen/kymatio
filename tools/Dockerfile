@@ -2,7 +2,6 @@ FROM nvidia/cuda:9.2-devel
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      python3-scipy \
       python3-appdirs \
       python3-mako \
       python3-pytest \
@@ -17,6 +16,7 @@ RUN apt-get update && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/*
 
 RUN pip3 install \
+      scipy \
       configparser \
       torchvision \
       scikit-cuda \
