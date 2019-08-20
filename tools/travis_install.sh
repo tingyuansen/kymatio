@@ -10,10 +10,10 @@ if [[ $CONDA == "1" ]]; then
     conda update -q conda
     conda info -a
 
-    conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy pytest pytest-cov
+    conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION \
+        numpy scipy pytest pytest-cov tensorflow
     source activate test-environment
     conda install -c pytorch pytorch-cpu
-    pip install tensorflow
 else
     pip install --upgrade pytest
     pip install pytest-cov
