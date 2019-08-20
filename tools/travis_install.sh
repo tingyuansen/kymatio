@@ -11,7 +11,7 @@ if [[ $CONDA == "1" ]]; then
     conda info -a
 
     conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION \
-        'numpy==1.14.*' 'setuptools==39.1.*' scipy pytest pytest-cov tensorflow
+        'numpy==1.14.5' 'setuptools==39.1.0' scipy pytest pytest-cov tensorflow
     source activate test-environment
     conda install -c pytorch pytorch-cpu
 else
