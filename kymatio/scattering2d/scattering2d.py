@@ -260,23 +260,23 @@ class Scattering2D(object):
                         S[..., n_order2, :, :] = unpad(U_J_r)
                         n_order2 += 1
 
-                    ### YST addition ###
-                    if self.max_order == 3:
-                        for n3 in range(len(psi)):
-                            j3 = psi[n3]['j']
-                            if(j2 < j3):
-                                print('j3-j2', j3-j2, ", j2=", j2, ", j3=", j3)
-                                print(U_2_c.shape)
-                                U_3_c = subsample_fourier(cdgmm(U_2_c, psi[n3][j2]), k=2 ** (j3-j2))
-                                U_3_c = fft(U_3_c, 'C2C', inverse=True)
-                                U_3_c = fft(modulus(U_3_c), 'C2C')
+                        ### YST addition ###
+                        if self.max_order == 3:
+                            for n3 in range(len(psi)):
+                                j3 = psi[n3]['j']
+                                if(j2 < j3):
+                                    print('j3-j2', j3-j2, ", j2=", j2, ", j3=", j3)
+                                    print(U_2_c.shape)
+                                    U_3_c = subsample_fourier(cdgmm(U_2_c, psi[n3][j2]), k=2 ** (j3-j2))
+                                    U_3_c = fft(U_3_c, 'C2C', inverse=True)
+                                    U_3_c = fft(modulus(U_3_c), 'C2C')
 
-                                # Fourth low pass filter
-                                U_3_c = subsample_fourier(cdgmm(U_3_c, phi[j2]), k=2 ** (J-j3))
-                                U_J_r = fft(U_3_c, 'C2R')
+                                    # Fourth low pass filter
+                                    U_3_c = subsample_fourier(cdgmm(U_3_c, phi[j2]), k=2 ** (J-j3))
+                                    U_J_r = fft(U_3_c, 'C2R')
 
-                                S[..., n_order3, :, :] = unpad(U_J_r)
-                                n_order3 += 1
+                                    S[..., n_order3, :, :] = unpad(U_J_r)
+                                    n_order3 += 1
 
         scattering_shape = S.shape[-3:]
         S = S.reshape(batch_shape + scattering_shape)
