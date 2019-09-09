@@ -272,7 +272,9 @@ class Scattering2D(object):
                                     U_3_c = fft(modulus(U_3_c), 'C2C')
 
                                     # Fourth low pass filter
-                                    U_3_c = subsample_fourier(cdgmm(U_3_c, phi[j2]), k=2 ** (J-j3))
+                                    print(U_3_c.shape)
+                                    print('J-j3', J-j3)
+                                    U_3_c = subsample_fourier(cdgmm(U_3_c, phi[j3]), k=2 ** (J-j3))
                                     U_J_r = fft(U_3_c, 'C2R')
 
                                     S[..., n_order3, :, :] = unpad(U_J_r)
