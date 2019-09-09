@@ -227,7 +227,7 @@ class Scattering2D(object):
         n_order2 = 1 + order1_size
 
         ### YST addition ###
-        n_order_3 = 1 + order1_size + order2_size
+        n_order3 = 1 + order1_size + order2_size
 
         for n1 in range(len(psi)):
             j1 = psi[n1]['j']
