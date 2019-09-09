@@ -247,8 +247,6 @@ class Scattering2D(object):
                 for n2 in range(len(psi)):
                     j2 = psi[n2]['j']
                     if(j1 < j2):
-                        print('j2-j1', j2-j1, ", j1=", j1, ", j2=", j2)
-                        print(U_1_c.shape)
                         U_2_c = subsample_fourier(cdgmm(U_1_c, psi[n2][j1]), k=2 ** (j2-j1))
                         U_2_c = fft(U_2_c, 'C2C', inverse=True)
                         U_2_c = fft(modulus(U_2_c), 'C2C')
@@ -265,19 +263,16 @@ class Scattering2D(object):
                             for n3 in range(len(psi)):
                                 j3 = psi[n3]['j']
                                 if(j2 < j3):
-                                    print('j3-j2', j3-j2, ", j2=", j2, ", j3=", j3)
-                                    print(U_2_c.shape)
                                     U_3_c = subsample_fourier(cdgmm(U_2_c, psi[n3][j2]), k=2 ** (j3-j2))
                                     U_3_c = fft(U_3_c, 'C2C', inverse=True)
                                     U_3_c = fft(modulus(U_3_c), 'C2C')
 
                                     # Fourth low pass filter
-                                    print(U_3_c.shape)
-                                    print('J-j3', J-j3)
                                     U_3_c = subsample_fourier(cdgmm(U_3_c, phi[j3]), k=2 ** (J-j3))
                                     U_J_r = fft(U_3_c, 'C2R')
 
                                     S[..., n_order3, :, :] = unpad(U_J_r)
+                                    print(n_order1, n_order2, n_order3)
                                     n_order3 += 1
 
         scattering_shape = S.shape[-3:]
