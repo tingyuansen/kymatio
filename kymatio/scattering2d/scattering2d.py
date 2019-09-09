@@ -202,7 +202,7 @@ class Scattering2D(object):
 
         output_size = order0_size + order1_size
 
-        if self.max_order == 2:
+        if self.max_order >= 2:
             output_size += order2_size
 
         ### YST addition ###
