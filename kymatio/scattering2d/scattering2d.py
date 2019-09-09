@@ -242,6 +242,7 @@ class Scattering2D(object):
             U_J_r = fft(U_2_c, 'C2R')
             S[..., n_order1, :, :] = unpad(U_J_r)
             n_order1 += 1
+            print("n_order1:", n_order1)
 
             if self.max_order == 2:
                 for n2 in range(len(psi)):
@@ -257,7 +258,8 @@ class Scattering2D(object):
 
                         S[..., n_order2, :, :] = unpad(U_J_r)
                         n_order2 += 1
-
+                        print("n_order2:", n_order2)
+                        
                     ### YST addition ###
                     #if self.max_order == 3:
                     #    for n3 in range(len(psi)):
