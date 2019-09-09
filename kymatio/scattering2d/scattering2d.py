@@ -266,7 +266,7 @@ class Scattering2D(object):
                             j3 = psi[n3]['j']
                             if(j2 < j3):
                                 print('j3-j2', j3-j2, ", j2=", j2, ", j3=", j3)
-                                print(U_1_c.shape)
+                                print(U_2_c.shape)
                                 U_3_c = subsample_fourier(cdgmm(U_2_c, psi[n3][j2]), k=2 ** (j3-j2))
                                 U_3_c = fft(U_3_c, 'C2C', inverse=True)
                                 U_3_c = fft(modulus(U_3_c), 'C2C')
