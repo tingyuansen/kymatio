@@ -209,7 +209,9 @@ class Scattering2D(object):
         if self.max_order == 3:
             output_size += order3_size
 
-        S = input.new(input.size(0),
+        print("output_size", output_size)
+
+""        S = input.new(input.size(0),
                       input.size(1),
                       output_size,
                       self.M_padded//(2**J)-2,
