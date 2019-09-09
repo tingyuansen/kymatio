@@ -274,6 +274,8 @@ class Scattering2D(object):
                     #            S[..., n_order3, :, :] = unpad(U_J_r)
                     #            n_order3 += 1
 
+        print("S.shape", S.shape)
+        print("S.shape[-3:]", S.shape[-3:])
         scattering_shape = S.shape[-3:]
         S = S.reshape(batch_shape + scattering_shape)
 
