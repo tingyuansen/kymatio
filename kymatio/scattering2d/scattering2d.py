@@ -199,6 +199,7 @@ class Scattering2D(object):
 
         ### YST addition ###
         order3_size = self.L ** 3 * (J * (J - 1) * (J-2)) // (3 * 2)
+        order4_size = self.L ** 4 * (J * (J - 1) * (J-2) * (J-3)) // (4 * 3 * 2)
 
         output_size = order0_size + order1_size
 
@@ -206,8 +207,10 @@ class Scattering2D(object):
             output_size += order2_size
 
         ### YST addition ###
-        if self.max_order == 3:
+        if self.max_order >= 3:
             output_size += order3_size
+        if self.max_order >= 4:
+            output_size += order4_size
 
         S = input.new(input.size(0),
                       input.size(1),
@@ -228,6 +231,7 @@ class Scattering2D(object):
 
         ### YST addition ###
         n_order3 = 1 + order1_size + order2_size
+        n_order4 = 1 + order1_size + order2_size + order3_size
 
         for n1 in range(len(psi)):
             j1 = psi[n1]['j']
@@ -259,7 +263,7 @@ class Scattering2D(object):
                         n_order2 += 1
 
                         ### YST addition ###
-                        if self.max_order == 3:
+                        if self.max_order >= 3:
                             for n3 in range(len(psi)):
                                 j3 = psi[n3]['j']
                                 if(j2 < j3):
@@ -273,6 +277,23 @@ class Scattering2D(object):
 
                                     S[..., n_order3, :, :] = unpad(U_J_r)
                                     n_order3 += 1
+
+
+                                    ### YST addition ###
+                                    if self.max_order >= 4:
+                                        for n4 in range(len(psi)):
+                                            j4 = psi[n4]['j']
+                                            if(j3 < j4):
+                                                U_4_c = subsample_fourier(cdgmm(U_3_c, psi[n4][j3]), k=2 ** (j4-j3))
+                                                U_4_c = fft(U_4_c, 'C2C', inverse=True)
+                                                U_4_c = fft(modulus(U_4_c), 'C2C')
+
+                                                # Fourth low pass filter
+                                                U_4_c = subsample_fourier(cdgmm(U_4_c, phi[j4]), k=2 ** (J-j4))
+                                                U_J_r = fft(U_4_c, 'C2R')
+
+                                                S[..., n_order4, :, :] = unpad(U_J_r)
+                                                n_order4 += 1
 
         scattering_shape = S.shape[-3:]
         S = S.reshape(batch_shape + scattering_shape)
