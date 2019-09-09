@@ -198,7 +198,7 @@ class Scattering2D(object):
         order2_size = self.L ** 2 * J * (J - 1) // 2
 
         # YST addition
-        order2_size = self.L ** 3 * J * (J - 1) * (J-2) // 3
+        order3_size = self.L ** 3 * J * (J - 1) * (J-2) // 3
 
         output_size = order0_size + order1_size
 
