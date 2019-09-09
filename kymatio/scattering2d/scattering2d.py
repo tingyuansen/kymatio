@@ -244,7 +244,7 @@ class Scattering2D(object):
             n_order1 += 1
             print("n_order1:", n_order1)
 
-            if self.max_order == 2:
+            if self.max_order > 2:
                 for n2 in range(len(psi)):
                     j2 = psi[n2]['j']
                     if(j1 < j2):
@@ -259,7 +259,7 @@ class Scattering2D(object):
                         S[..., n_order2, :, :] = unpad(U_J_r)
                         n_order2 += 1
                         print("n_order2:", n_order2)
-                        
+
                     ### YST addition ###
                     #if self.max_order == 3:
                     #    for n3 in range(len(psi)):
@@ -277,10 +277,10 @@ class Scattering2D(object):
                     #            n_order3 += 1
 
         print("S.shape", S.shape)
-        print("S.shape[-3:]", S.shape[-3:])
-        print("batch_shape", batch_shape)
-        print("reshape", batch_shape + scattering_shape)
         scattering_shape = S.shape[-3:]
+        print("batch_shape", batch_shape)
+        print("S.shape[-3:]", scattering_shape)
+        print("reshape", batch_shape + scattering_shape)
         S = S.reshape(batch_shape + scattering_shape)
         print("S.shape", S.shape)
 
