@@ -211,7 +211,7 @@ class Scattering2D(object):
 
         print("output_size", output_size)
 
-""        S = input.new(input.size(0),
+        S = input.new(input.size(0),
                       input.size(1),
                       output_size,
                       self.M_padded//(2**J)-2,
