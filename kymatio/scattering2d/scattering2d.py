@@ -272,7 +272,6 @@ class Scattering2D(object):
                                     U_J_r = fft(U_3_c, 'C2R')
 
                                     S[..., n_order3, :, :] = unpad(U_J_r)
-                                    print(n_order1, n_order2, n_order3)
                                     n_order3 += 1
 
         scattering_shape = S.shape[-3:]
