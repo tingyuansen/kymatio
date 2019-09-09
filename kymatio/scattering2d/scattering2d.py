@@ -244,7 +244,7 @@ class Scattering2D(object):
             n_order1 += 1
             print("n_order1:", n_order1)
 
-            if self.max_order > 2:
+            if self.max_order >= 2:
                 for n2 in range(len(psi)):
                     j2 = psi[n2]['j']
                     if(j1 < j2):
