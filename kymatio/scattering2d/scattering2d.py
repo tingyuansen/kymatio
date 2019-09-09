@@ -276,9 +276,12 @@ class Scattering2D(object):
 
         print("S.shape", S.shape)
         print("S.shape[-3:]", S.shape[-3:])
+        print("batch_shape", batch_shape)
+        print("reshape", batch_shape + scattering_shape)
         scattering_shape = S.shape[-3:]
         S = S.reshape(batch_shape + scattering_shape)
-
+        print("S.shape", S.shape)
+        
         return S
 
     def __call__(self, input):
