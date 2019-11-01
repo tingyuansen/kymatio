@@ -211,7 +211,7 @@ class Scattering2D(object):
             output_size += order3_size
         if self.max_order >= 4:
             output_size += order4_size
-        print('output size:', output_size)
+        #print('output size:', output_size)
 
         S = input.new(input.size(0),
                       input.size(1),
